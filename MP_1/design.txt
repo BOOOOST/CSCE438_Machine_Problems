@@ -1,0 +1,4 @@
+The general design I have for this is I will have the server create a socket and listen on it for connections as well as potential messages sent.
+Those sent messages get put through a handler which will output the status of the command that was sent which is put into the reply struct to be sent back to the client
+For when the CREATE message is sent I will be forking the process and storing the PID of the child so that whenever the DELETE command is sent I can send a kill signal to the child to end the room.
+For the child it will have a similar structure to main and will have a message handler that will send the messages recieved to all other clients that are connected.
